@@ -12,7 +12,7 @@ import android.widget.EditText;
  * 描述:输入框工具
  */
 
-public class EditUtil {
+public class EditUtils {
     /**
      * 设置输入框只能输入价格时只能输入两位小数
      * @param editText

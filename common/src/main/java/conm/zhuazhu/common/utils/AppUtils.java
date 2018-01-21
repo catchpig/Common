@@ -18,7 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by apple on 2018/1/16.
+ * 创建时间:2018/1/17 11:17<br/>
+ * 创建人: 李涛<br/>
+ * 修改人: 李涛<br/>
+ * 修改时间: 2018/1/17 11:17<br/>
+ * 描述:App相关工具类
  */
 
 public class AppUtils {
