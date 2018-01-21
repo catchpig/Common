@@ -241,6 +241,19 @@ public class AppUtils {
     }
 
     /**
+     * 获取meta-data的value
+     * @param key
+     * @return
+     * @throws PackageManager.NameNotFoundException
+     */
+    public static String metaData(String key) throws PackageManager.NameNotFoundException {
+        ApplicationInfo applicationInfo = Utils.getApp().getPackageManager()
+                .getApplicationInfo(getAppPackageName(), PackageManager
+                        .GET_META_DATA);
+        return applicationInfo.metaData.getString("key");
+    }
+
+    /**
      * 获取 App 包名
      *
      * @return App 包名

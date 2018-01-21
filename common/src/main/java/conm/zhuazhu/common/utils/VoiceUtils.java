@@ -1,6 +1,5 @@
 package conm.zhuazhu.common.utils;
 
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.annotation.RawRes;
 
@@ -13,13 +12,10 @@ public class VoiceUtils {
 
     /**
      * 播放语音
-     * @param context
      * @param raw
      */
-    public static void play(Context context,@RawRes int raw){
-
-        MediaPlayer player = MediaPlayer.create(context,raw);
-
+    public static void play(@RawRes int raw){
+        MediaPlayer player = MediaPlayer.create(Utils.getApp(),raw);
         player.start();
     }
 }
