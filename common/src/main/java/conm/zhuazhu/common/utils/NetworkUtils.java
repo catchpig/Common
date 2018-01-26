@@ -35,6 +35,13 @@ public class NetworkUtils {
     }
 
     /**
+     * 打开wifi设置页面
+     */
+    public static void openWifiSettings(){
+        Utils.getApp().startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+    /**
      * 打开网络设置界面
      */
     public static void openWirelessSettings() {
