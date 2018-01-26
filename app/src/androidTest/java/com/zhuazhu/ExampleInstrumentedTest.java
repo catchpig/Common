@@ -7,7 +7,9 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import conm.zhuazhu.common.utils.EncryptUtils;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -22,5 +24,10 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.zhuazhu", appContext.getPackageName());
+    }
+    @Test
+    public void test(){
+        String m5 = EncryptUtils.encryptMD5ToString("123456");
+        System.out.println(m5);
     }
 }
