@@ -105,7 +105,7 @@ public class StringUtils {
      * @return
      */
     public static boolean validateNumber(String number) {
-        if(number.indexOf(".")!=-1){
+        if(number.contains(".")){
             //小数
             return number.matches("^[-+]?\\d+(.)\\d*$");
         }else{

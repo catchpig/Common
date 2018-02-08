@@ -21,32 +21,29 @@ import android.support.v4.content.ContextCompat;
 public class ResUtils {
     /**
      * 获取资源(strings.xml)字符串
-     * @param context
      * @param id
      * @return
      */
-    public static String string(@NonNull Context context, @StringRes int id){
-        return context.getResources().getString(id);
+    public static String string( @StringRes int id){
+        return Utils.getApp().getResources().getString(id);
     }
 
     /**
      * 获取资源Drawable
-     * @param context
      * @param drawable
      * @return
      */
-    public static Drawable drawable(@NonNull Context context, @DrawableRes int drawable){
-        return ContextCompat.getDrawable(context, drawable);
+    public static Drawable drawable(@DrawableRes int drawable){
+        return ContextCompat.getDrawable(Utils.getApp(), drawable);
     }
 
     /**
      * 获取资源颜色(colors.xml)的ColorInt
-     * @param context
      * @param color
      * @return
      */
     @ColorInt
-    public static int color(@NonNull Context context, @ColorRes int color){
-        return ContextCompat.getColor(context,color);
+    public static int color(@ColorRes int color){
+        return ContextCompat.getColor(Utils.getApp(),color);
     }
 }

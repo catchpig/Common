@@ -43,48 +43,38 @@ public class ScreenUtils {
 
     /**
      * dp转px
-     * @param context
      * @param dp
      * @return
      */
-    public static float dpToPx(Context context, float dp) {
-        if (context == null) {
-            return -1;
-        }
-        return dp * context.getResources().getDisplayMetrics().density;
+    public static float dpToPx(float dp) {
+        return dp * Utils.getApp().getResources().getDisplayMetrics().density;
     }
 
     /**
      * px转dp
-     * @param context
      * @param px
      * @return
      */
 
-    public static float pxToDp(Context context, float px) {
-        if (context == null) {
-            return -1;
-        }
-        return px / context.getResources().getDisplayMetrics().density;
+    public static float pxToDp(float px) {
+        return px / Utils.getApp().getResources().getDisplayMetrics().density;
     }
 
     /**
      * dp转px
-     * @param context
      * @param dp
      * @return 返回int类型
      */
-    public static int dpToPxInt(Context context, float dp) {
-        return (int)(dpToPx(context, dp) + 0.5f);
+    public static int dpToPxInt(float dp) {
+        return (int)(dpToPx( dp) + 0.5f);
     }
 
     /**
      * px转dp
-     * @param context
      * @param px
      * @return 返回int类型
      */
-    public static int pxToDpCeilInt(Context context, float px) {
-        return (int)(pxToDp(context, px) + 0.5f);
+    public static int pxToDpCeilInt(float px) {
+        return (int)(pxToDp(px) + 0.5f);
     }
 }

@@ -22,10 +22,11 @@ public class WindowUtils {
      * @return
      * 返回为null,代表没有开启READ_PHONE_STATE权限
      */
-    public static String deviceId(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService
+    public static String deviceId() {
+        TelephonyManager tm = (TelephonyManager) Utils.getApp().getSystemService
                 (Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(Utils.getApp(), Manifest.permission.READ_PHONE_STATE) !=
+                PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
