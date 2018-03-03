@@ -14,5 +14,5 @@
    ```
 添加依赖:
 ```
-    implementation 'com.github.zhuazhu:UIViewPager:last_version'
+    implementation 'com.github.zhuazhu:Common:last_version'
 ```
