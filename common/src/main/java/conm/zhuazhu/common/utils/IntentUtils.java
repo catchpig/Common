@@ -15,7 +15,7 @@ import java.io.File;
  * 创建人: 李涛<br/>
  * 修改人: 李涛<br/>
  * 修改时间: 2018/1/16 下午11:25<br/>
- * 描述:意图相关工具类
+ * 描述:Intent相关工具类
  */
 
 public class IntentUtils {
