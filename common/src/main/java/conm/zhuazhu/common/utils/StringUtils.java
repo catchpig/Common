@@ -181,10 +181,9 @@ public class StringUtils {
     public static String format(Object obj, int scale, RoundingMode mode) {
         if (obj == null) {
             obj = 0;
-
         } else if (obj instanceof String) {
             if (validateNumber(obj.toString())) {
-                obj = new BigDecimal(obj.toString()).doubleValue();
+                obj = new BigDecimal(obj.toString());
             } else {
                 obj = 0;
             }
