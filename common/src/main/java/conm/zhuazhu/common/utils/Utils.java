@@ -22,46 +22,47 @@ public class Utils {
     @SuppressLint("StaticFieldLeak")
     private static Application sApplication;
 
-    static WeakReference<Activity> sTopActivityWeakRef;
+    private static WeakReference<Activity> sTopActivityWeakRef;
     static List<Activity> sActivityList = new LinkedList<>();
 
-    private static Application.ActivityLifecycleCallbacks mCallbacks = new Application.ActivityLifecycleCallbacks() {
-        @Override
-        public void onActivityCreated(Activity activity, Bundle bundle) {
-            sActivityList.add(activity);
-            setTopActivityWeakRef(activity);
-        }
+    private static Application.ActivityLifecycleCallbacks mCallbacks =
+            new Application.ActivityLifecycleCallbacks() {
+                @Override
+                public void onActivityCreated(Activity activity, Bundle bundle) {
+                    sActivityList.add(activity);
+                    setTopActivityWeakRef(activity);
+                }
 
-        @Override
-        public void onActivityStarted(Activity activity) {
-            setTopActivityWeakRef(activity);
-        }
+                @Override
+                public void onActivityStarted(Activity activity) {
+                    setTopActivityWeakRef(activity);
+                }
 
-        @Override
-        public void onActivityResumed(Activity activity) {
-            setTopActivityWeakRef(activity);
-        }
+                @Override
+                public void onActivityResumed(Activity activity) {
+                    setTopActivityWeakRef(activity);
+                }
 
-        @Override
-        public void onActivityPaused(Activity activity) {
+                @Override
+                public void onActivityPaused(Activity activity) {
 
-        }
+                }
 
-        @Override
-        public void onActivityStopped(Activity activity) {
+                @Override
+                public void onActivityStopped(Activity activity) {
 
-        }
+                }
 
-        @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+                @Override
+                public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
 
-        }
+                }
 
-        @Override
-        public void onActivityDestroyed(Activity activity) {
-            sActivityList.remove(activity);
-        }
-    };
+                @Override
+                public void onActivityDestroyed(Activity activity) {
+                    sActivityList.remove(activity);
+                }
+            };
 
     private Utils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -94,4 +95,7 @@ public class Utils {
         }
     }
 
+    public static Activity getTopActivity() {
+        return sTopActivityWeakRef == null ? null : sTopActivityWeakRef.get();
+    }
 }
