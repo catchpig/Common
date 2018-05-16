@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -37,16 +38,27 @@ public class NetworkUtils {
     /**
      * 打开wifi设置页面
      */
-    public static void openWifiSettings(){
-        Utils.getApp().startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS)
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    public static void openWifiSettings() {
+        try {
+            Utils.getApp()
+                    .startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS).setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     /**
      * 打开网络设置界面
      */
     public static void openWirelessSettings() {
-        Utils.getApp().startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try {
+            Utils.getApp()
+                    .startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS).setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -100,7 +112,8 @@ public class NetworkUtils {
         if (ip == null || ip.length() <= 0) {
             ip = "223.5.5.5";// 阿里巴巴公共 ip
         }
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
+        ShellUtils.CommandResult result =
+                ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
         boolean ret = result.result == 0;
         if (result.errorMsg != null) {
             Log.d("NetworkUtils", "isAvailableByPing() called" + result.errorMsg);
@@ -121,7 +134,8 @@ public class NetworkUtils {
             TelephonyManager tm =
                     (TelephonyManager) Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
             if (tm == null) return false;
-            @SuppressLint("PrivateApi") Method getMobileDataEnabledMethod = tm.getClass().getDeclaredMethod("getDataEnabled");
+            @SuppressLint("PrivateApi") Method getMobileDataEnabledMethod =
+                    tm.getClass().getDeclaredMethod("getDataEnabled");
             if (null != getMobileDataEnabledMethod) {
                 return (boolean) getMobileDataEnabledMethod.invoke(tm);
             }
@@ -190,7 +204,8 @@ public class NetworkUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean getWifiEnabled() {
-        @SuppressLint("WifiManagerLeak") WifiManager manager = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        @SuppressLint("WifiManagerLeak") WifiManager manager =
+                (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         return manager != null && manager.isWifiEnabled();
     }
 
@@ -203,8 +218,8 @@ public class NetworkUtils {
      */
     @SuppressLint("MissingPermission")
     public static void setWifiEnabled(final boolean enabled) {
-        @SuppressLint("WifiManagerLeak")
-        WifiManager manager = (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        @SuppressLint("WifiManagerLeak") WifiManager manager =
+                (WifiManager) Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         if (manager == null) return;
         if (enabled) {
             if (!manager.isWifiEnabled()) {
@@ -258,9 +273,9 @@ public class NetworkUtils {
         return tm != null ? tm.getNetworkOperatorName() : null;
     }
 
-    private static final int NETWORK_TYPE_GSM      = 16;
+    private static final int NETWORK_TYPE_GSM = 16;
     private static final int NETWORK_TYPE_TD_SCDMA = 17;
-    private static final int NETWORK_TYPE_IWLAN    = 18;
+    private static final int NETWORK_TYPE_IWLAN = 18;
 
     /**
      * 获取当前网络类型
@@ -341,8 +356,8 @@ public class NetworkUtils {
      */
     public static String getIPAddress(final boolean useIPv4) {
         try {
-            for (Enumeration<NetworkInterface> nis =
-                 NetworkInterface.getNetworkInterfaces(); nis.hasMoreElements(); ) {
+            for (Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+                    nis.hasMoreElements(); ) {
                 NetworkInterface ni = nis.nextElement();
                 // 防止小米手机返回 10.0.2.15
                 if (!ni.isUp()) continue;
@@ -357,8 +372,7 @@ public class NetworkUtils {
                         } else {
                             if (!isIPv4) {
                                 int index = hostAddress.indexOf('%');
-                                return index < 0
-                                        ? hostAddress.toUpperCase()
+                                return index < 0 ? hostAddress.toUpperCase()
                                         : hostAddress.substring(0, index).toUpperCase();
                             }
                         }
